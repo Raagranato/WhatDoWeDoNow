@@ -1,2 +1,2 @@
 # To-Do-List
-To-Do List in Rust that runs on terminal
+To-Do List in Rust that runs on the terminal
