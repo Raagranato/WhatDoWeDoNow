@@ -6,7 +6,7 @@ mod utils;
 use crate::utils::*;
 use std::{io};
 
-
+//TODO:Arummar formataçao na hora de limpar o terminal, dar esso se n digitar direito
 fn main(){
     println!("Welcome to WhatDoWe-Now");
     /*--PASSOS PRA FAZER TODO LIST--
@@ -19,14 +19,14 @@ fn main(){
     tarefas.push(t);
     menu();
     let mut opc=String::new();
-    while opc!="5" {
+    while opc!="exit" {
         
         io::stdin().read_line(&mut opc).expect("Erro ao ler");
+        let (command, args)=filter_command(&opc);
 
-
-        match opc.trim() {
+        match command.trim() {
             "menu"=> menu(),
-            "add"|"Add"=>add_tarefa(&mut tarefas),//Passar parematro para remover maybe? done [parametro], sem precisa rpedir qual
+            "add"|"Add"=>add_tarefa(&mut tarefas,&mut args),//Passar parematro para remover maybe? done [parametro], sem precisa rpedir qual
             "done"=>marcar_feito(&mut tarefas),//Passar parematro para remover maybe? done [parametro], sem precisa rpedir qual
             "remove"|"Remove"|"r"|"delete"=>remove_tarefa(&mut tarefas),//Passar parematro para remover maybe? remove [parametro], sem precisa rpedir qual
             "clear"|"Clear"=>remove_all(&mut tarefas),
@@ -34,6 +34,8 @@ fn main(){
             _ => println!("Not possible")
         }
         imprime_tarefas(&tarefas);
+
+        
     }
 
 }

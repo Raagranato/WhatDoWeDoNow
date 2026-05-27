@@ -12,12 +12,16 @@ pub fn imprime_tarefas(tarefas:&Vec<Todo>){//So pega emprestado
     }
 }
 
-pub fn add_tarefa(tarefas:&mut Vec<Todo>){//Pega emprestado e pode mudar
+pub fn add_tarefa(tarefas:&mut Vec<Todo>,args :&mut String){//Pega emprestado e pode mudar
     print!("Nova tarefa:\n");//TODO:receber novas tarefas
-    let mut input = String::new();
-    io::stdin().read_line(&mut input).expect("Erro ao ler");
+    let mut chars = args.trim().chars();
+    let capitalizado = match chars.next() 
+    {
+    Some(primeiro) => primeiro.to_uppercase().to_string() + chars.as_str(),
+    None => String::new(),
+    };
+    let nvtarefa = Todo { tarefa: capitalizado, feito: false };
 
-    let nvtarefa = Todo{tarefa:input.trim().to_string(),feito: false,};
 
     tarefas.push(nvtarefa);
 }
@@ -43,6 +47,7 @@ pub fn remove_tarefa(tarefas: &mut Vec<Todo>){
 pub fn remove_all(tarefas: &mut Vec<Todo>){
     tarefas.clear();
 }
+
 
 fn feito(x: &Todo) -> &str{//Retornar se true retorna X e n retorna ' '(vazio)
     match x.feito {
