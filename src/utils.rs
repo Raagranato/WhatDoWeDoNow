@@ -6,5 +6,5 @@ pub fn limpa_terminal() {
 }
 
 pub fn menu(){
-    println!("Menu:\n 1 - Add\n 2- Mark done\n 3 - Remove\n4 - Clear");
+    println!(" Menu\n Add\n Mark done\n Remove\n Clear\n exit" );//TODO:Formatar p colocar a primeira letra maiuscula
 }

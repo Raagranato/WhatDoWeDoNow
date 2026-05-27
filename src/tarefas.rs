@@ -8,11 +8,11 @@ pub fn imprime_tarefas(tarefas:&Vec<Todo>){//So pega emprestado
         print!("Tudo em dia");
     }
     for x in tarefas{
-        print!("Tarefa: {}    Feito:[{}]\n", x.tarefa, feito(&x));//TODO: ficar formatado a saida do feito um embaixo do outro
+        print!("Tarefa: {}    [{}]\n", x.tarefa, feito(&x));//TODO: ficar formatado a saida do feito um embaixo do outro tarefas depedentes de outra c tab
     }
 }
 
-pub fn adiciona_tarefa(tarefas:&mut Vec<Todo>){//Pega emprestado e pode mudar
+pub fn add_tarefa(tarefas:&mut Vec<Todo>){//Pega emprestado e pode mudar
     print!("Nova tarefa:\n");//TODO:receber novas tarefas
     let mut input = String::new();
     io::stdin().read_line(&mut input).expect("Erro ao ler");
@@ -23,7 +23,7 @@ pub fn adiciona_tarefa(tarefas:&mut Vec<Todo>){//Pega emprestado e pode mudar
 }
 
 
-pub fn marcar_feito(tarefas: &mut Vec<Todo>){
+pub fn marcar_feito(tarefas: &mut Vec<Todo>){//TODO: marcar digitando parte da string com o maximo de erro de seila? 3 palavra ou 2?
     imprime_tarefas(&tarefas);
     let mut input = String::new();
     print!("\nDigite o [index] da q vc quer conluir\n");
@@ -46,7 +46,7 @@ pub fn remove_all(tarefas: &mut Vec<Todo>){
 
 fn feito(x: &Todo) -> &str{//Retornar se true retorna X e n retorna ' '(vazio)
     match x.feito {
-        true  => "X",
+        true  => "OK",
         false => " ",
     }
 }

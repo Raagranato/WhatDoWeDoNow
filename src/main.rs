@@ -1,36 +1,39 @@
 mod todo;//mod so aparece em um arquivo o resto pode usar usando crate sem usar mod
 use crate::todo::Todo;
 mod tarefas;
-use crate::tarefas::{imprime_tarefas, adiciona_tarefa, marcar_feito,remove_tarefa};
+use crate::tarefas::*;//ou {imprime_tarefas, adiciona_tarefa, marcar_feito,remove_tarefa,remove_all};(list td, q sucks)
 mod utils;
-use std::{io,string};
+use crate::utils::*;
+use std::{io};
 
 
 fn main(){
-    println!("Bem vindo ao WhatDoWe-Now");
+    println!("Welcome to WhatDoWe-Now");
     /*--PASSOS PRA FAZER TODO LIST--
     -Imprime lista
     -Adiciona item
-    -Marcar como feito*/
-    //menu();
-    // let mut opc=string::new();
-
-    // match menu {
-    //     manu== 1
-        
-    // }
+    -Marcar como feito*/    
     let mut tarefas : Vec<Todo>= Vec::new();//->permite muda a variavel -> mut
 
     let t = Todo{tarefa: String::from("Lavar carro"),feito: false,};
     tarefas.push(t);
+    menu();
+    let mut opc=String::new();
+    while opc!="5" {
+        
+        io::stdin().read_line(&mut opc).expect("Erro ao ler");
 
-    adiciona_tarefa(&mut tarefas);
 
-    imprime_tarefas(&tarefas);
-    
-    marcar_feito(&mut tarefas);
+        match opc.trim() {
+            "menu"=> menu(),
+            "add"|"Add"=>add_tarefa(&mut tarefas),//Passar parematro para remover maybe? done [parametro], sem precisa rpedir qual
+            "done"=>marcar_feito(&mut tarefas),//Passar parematro para remover maybe? done [parametro], sem precisa rpedir qual
+            "remove"|"Remove"|"r"|"delete"=>remove_tarefa(&mut tarefas),//Passar parematro para remover maybe? remove [parametro], sem precisa rpedir qual
+            "clear"|"Clear"=>remove_all(&mut tarefas),
+            "exit"=>break,
+            _ => println!("Not possible")
+        }
+        imprime_tarefas(&tarefas);
+    }
 
-    imprime_tarefas(&tarefas);
-    
-    remove_tarefa(&mut tarefas);
 }
