@@ -1,8 +1,11 @@
 [package]
-name = "to-do-list"
+name = "wdwn"
 version = "0.1.0"
 edition = "2024"
 
 [[bin]]
 name = "to-do-list"
 path = "src/main.rs"
+
+[dependencies]
+rapidfuzz = "0.5.0"
