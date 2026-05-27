@@ -1,19 +1,18 @@
 use std::{io};//biblioteca para receber entrada e saida
-use crate::utils::{limpa_terminal};
+//use crate::utils::{limpa_terminal};
 use crate::todo::Todo;
 
 pub fn imprime_tarefas(tarefas:&Vec<Todo>){//So pega emprestado
-    limpa_terminal();
+    //limpa_terminal();
     if tarefas.is_empty() {
-        print!("Tudo em dia");
+        print!("Tudo em dia\n");
     }
     for x in tarefas{
         print!("Tarefa: {}    [{}]\n", x.tarefa, feito(&x));//TODO: ficar formatado a saida do feito um embaixo do outro tarefas depedentes de outra c tab
     }
 }
 
-pub fn add_tarefa(tarefas:&mut Vec<Todo>,args :&mut String){//Pega emprestado e pode mudar
-    print!("Nova tarefa:\n");//TODO:receber novas tarefas
+pub fn add_tarefa(tarefas:&mut Vec<Todo>,args :&String){//Pega emprestado e pode mudar
     let mut chars = args.trim().chars();
     let capitalizado = match chars.next() 
     {
@@ -28,7 +27,7 @@ pub fn add_tarefa(tarefas:&mut Vec<Todo>,args :&mut String){//Pega emprestado e 
 
 
 pub fn marcar_feito(tarefas: &mut Vec<Todo>){//TODO: marcar digitando parte da string com o maximo de erro de seila? 3 palavra ou 2?
-    imprime_tarefas(&tarefas);
+    //imprime_tarefas(&tarefas);
     let mut input = String::new();
     print!("\nDigite o [index] da q vc quer conluir\n");
     io::stdin().read_line(&mut input).expect("Erro ao ler");
