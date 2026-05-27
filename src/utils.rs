@@ -1,3 +1,6 @@
+use crate::tarefas::*;
+use crate::todo::Todo;
+
 //use std::{io};
 pub fn limpa_terminal() {
     match cfg!(windows) {
@@ -18,5 +21,21 @@ pub fn filter_command(main_input: &String)-> (String,Option<String>){//Option ->
 }
 
 pub fn menu(){
-    println!(" Menu\n Add\n Mark done\n Remove\n Clear\n exit" );//TODO:Formatar p colocar a primeira letra maiuscula
+    println!(" menu\n add\n done\n remove\n list\n delete\n clear\n undo \nexit" );
+}
+
+fn examine_opc(command:&String,args: &mut Option<String>,tarefas: &mut Vec<Todo>){
+        match (command.as_str(), args.is_some()){
+            ("menu",_)=>menu(),
+            ("add"|"Add",true)=> add_tarefa(&mut tarefas, &args.unwrap()),
+            ("add"|"Add",false)=>println!("Structure: add 'Compile code!'"),
+            ("done"|"Done",true)=>marcar_feito(&mut tarefas, &args.unwrap()),//TODO: Identificar palavras iguais- rapidfuzz
+            ("done"|"Done",_)=>println!("Structure: done 'Compile code!'"),
+            ("remove"|"Remove"|"r"|"R",true)=>remove_tarefa(&mut tarefas,&args.unwrap()),
+            ("remove"|"Remove"|"r"|"R",false)=>println!("Structure: remove 'Compile code!'"),
+            ("list",_)=>imprime_tarefas(&tarefas),
+            ("clear"|"Clear",_)=>limpa_terminal(),
+            ("delete"|"Delete",_)=>remove_all(&mut tarefas),//TODO: Confirmar o delete apertando enter talvez igual em atualizacoes (Y/n) e o enter e padrao maiusculo
+            (&_, _) => println!("Not a command!"),
+        }
 }
