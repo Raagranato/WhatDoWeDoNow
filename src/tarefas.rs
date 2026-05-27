@@ -1,4 +1,4 @@
-use std::io;//biblioteca para receber entrada e saida
+use std::{io};//biblioteca para receber entrada e saida
 use crate::utils::{limpa_terminal};
 use crate::todo::Todo;
 
@@ -8,7 +8,7 @@ pub fn imprime_tarefas(tarefas:&Vec<Todo>){//So pega emprestado
         print!("Tudo em dia");
     }
     for x in tarefas{
-        print!("Tarefa: {}    Feito:{}\n", x.tarefa, x.feito);//TODO: ficar formatado a saida do feito um embaixo do outro
+        print!("Tarefa: {}    Feito:[{}]\n", x.tarefa, feito(&x));//TODO: ficar formatado a saida do feito um embaixo do outro
     }
 }
 
@@ -28,6 +28,28 @@ pub fn marcar_feito(tarefas: &mut Vec<Todo>){
     let mut input = String::new();
     print!("\nDigite o [index] da q vc quer conluir\n");
     io::stdin().read_line(&mut input).expect("Erro ao ler");
-    let index: usize = input.trim().parse().expect("Digite um número");//parce-> converte pro tipo declarado, q é isize(index)
+    let index: usize = input.trim().parse().expect("Digite um número");//parce -> converte pro tipo declarado, q é isize(index)
     tarefas[index].feito = true;
 }
+
+pub fn remove_tarefa(tarefas: &mut Vec<Todo>){
+    let mut input = String::new();
+    print!("\nDigite o [index] da q vc quer remover\n");
+    io::stdin().read_line(&mut input).expect("Erro ao ler");
+    let index: usize = input.trim().parse().expect("Digite um número");//parce -> converte pro tipo declarado, q é isize(index)
+    tarefas.remove(index);
+}
+
+pub fn remove_all(tarefas: &mut Vec<Todo>){
+    tarefas.clear();
+}
+
+fn feito(x: &Todo) -> &str{//Retornar se true retorna X e n retorna ' '(vazio)
+    match x.feito {
+        true  => "X",
+        false => " ",
+    }
+}
+
+//fn save(tarefa: &Vec<Todo>){
+//}

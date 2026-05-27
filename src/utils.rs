@@ -6,5 +6,5 @@ pub fn limpa_terminal() {
 }
 
 pub fn menu(){
-    println!("Menu:\n 1 - Add\n 2- Mark done\n 3 - Remove");
+    println!("Menu:\n 1 - Add\n 2- Mark done\n 3 - Remove\n4 - Clear");
 }
