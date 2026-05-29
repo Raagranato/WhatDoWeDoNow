@@ -9,7 +9,7 @@ pub fn print_tasks(tarefas:&Vec<Todo>){//So pega emprestado
         print!("Everything done! :)\n");
     }
     for x in tarefas{
-        print!("Task: {}\t",done(&x));
+        print!("Task: {}\n",done(&x));
 
     }
     let total = tarefas.len();
