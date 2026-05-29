@@ -53,6 +53,7 @@ pub fn examine_opc(command:&String,args: &mut Option<String>,tarefas: &mut Vec<T
 
 
 pub fn save(tarefas: &Vec<Todo>) {
+    fs::create_dir_all("data").unwrap();
     let json = serde_json::to_string(tarefas).unwrap();
     fs::write("data/Tasks.json", json).unwrap();
 }
