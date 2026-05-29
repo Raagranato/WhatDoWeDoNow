@@ -1,5 +1,5 @@
-# WhatDoWe-Now?
-WhatDoWe-Now is a Rust Todo list that runs entirely on the terminal!
+# WhatDoWeDo-Now?
+WhatDoWeDo-Now is a Rust Todo list that runs entirely on the terminal!
  
 ## Installation
  
