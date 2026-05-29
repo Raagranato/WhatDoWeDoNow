@@ -7,24 +7,6 @@ use crate::utils::*;
 use std::io::Write;//biblioteca pra da flush no buffer
 use std::{io};
 
-/*TODO:
-+Fazer taferas dependerem de uma ou varia fazerem parte de uma
-+Marcar digitando parte da string com o maximo de erro de seila? 3
-[OK]Tarefas concluídas com strikethrough em verde, pendentes em branco
-[OK]Um contador no topo tipo 3/5 tarefas concluídas
-+Separador visual entre as tarefas
-[OK]Fazer teste automatizados
-
-UX:
-
-+help mostrando todos os comandos com exemplo de uso
-[OK]Confirmação antes do delete — Tem certeza? (s/n)
-
-Funcional:
-
-+Salvar as tarefas em arquivo pra persistir entre sessões
-+undo pra desfazer a última ação
-*/
 fn main(){
     println!("Welcome to WhatDoWe-Now");
     

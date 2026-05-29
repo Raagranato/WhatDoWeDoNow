@@ -54,10 +54,10 @@ pub fn examine_opc(command:&String,args: &mut Option<String>,tarefas: &mut Vec<T
 
 pub fn save(tarefas: &Vec<Todo>) {
     let json = serde_json::to_string(tarefas).unwrap();
-    fs::write("Tasks.json", json).unwrap();
+    fs::write("data/Tasks.json", json).unwrap();
 }
 
 pub fn load() -> Vec<Todo> {
-    let json = fs::read_to_string("Tasks.json").unwrap_or(String::from("[]"));
+    let json = fs::read_to_string("data/Tasks.json").unwrap_or(String::from("[]"));
     serde_json::from_str(&json).unwrap()
 }
