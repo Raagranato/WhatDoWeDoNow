@@ -1,12 +1,8 @@
-//use std::{io};//biblioteca para receber entrada e saida
+use std::{io};//biblioteca para receber entrada e saida
 //use crate::utils::{limpa_terminal};
 //use std::io::Write;
 use colored::Colorize;
-use crate::todo::Todo;
-
-
-    
-
+use crate::{todo::Todo};
 
 pub fn imprime_tarefas(tarefas:&Vec<Todo>){//So pega emprestado
     //limpa_terminal();
@@ -14,8 +10,12 @@ pub fn imprime_tarefas(tarefas:&Vec<Todo>){//So pega emprestado
         print!("Tudo em dia\n");
     }
     for x in tarefas{
-        print!("Tarefa: {}  \n",feito(&x));
+        print!("Tarefa: {}\t",feito(&x));
+
     }
+    let total = tarefas.len();
+    let feitas = tarefas.iter().filter(|t| t.feito).count();
+    println!("{}/{} tarefas concluídas", feitas, total);
 }
 
 pub fn add_tarefa(tarefas:&mut Vec<Todo>,args :&String){//Pega emprestado e pode mudar
@@ -26,7 +26,6 @@ pub fn add_tarefa(tarefas:&mut Vec<Todo>,args :&String){//Pega emprestado e pode
     None => String::new(),
     };
     let nvtarefa = Todo { tarefa: capitalizado, feito: false };
-
 
     tarefas.push(nvtarefa);
 }
@@ -64,13 +63,33 @@ pub fn marcar_feito(tarefas: &mut Vec<Todo>,args:&String){
 
 }
 
-pub fn remove_tarefa(tarefas: &mut Vec<Todo>,index:&String){
-    let index = index.trim().parse().expect("Digite um número");
-    tarefas.remove(index);
+pub fn remove_tarefa(tarefas: &mut Vec<Todo>,args:&String){
+    let encontradas: Vec<usize> = tarefas.iter().enumerate().filter(|(_, t)| t.tarefa.to_lowercase()
+    .contains(args.as_str())).map(|(i, _)| i).collect();//Da um Vec so co as tarefas que batem
+    match encontradas.len(){
+        0 => println!("Nenhuma tarefa encontrada!"),
+        1 => {
+            tarefas.remove(encontradas[0]);
+            println!("[OK]");
+            },
+        _=>{ 
+            println!("Witch one? Especify");
+            for i in encontradas{
+
+                println!("{}: {}", i, tarefas[i].tarefa);
+            }
+        }
+    }
 }
 
 pub fn remove_all(tarefas: &mut Vec<Todo>){
+    print!("Delete everything?(Y/n)");
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).expect("Erro ao ler");
+    if input.trim().is_empty()||input.trim() == "y"||input.trim() == "Y"{
     tarefas.clear();
+    print!("[Cleared]");
+    }
 }
 
 
@@ -81,5 +100,8 @@ fn feito(x: &Todo) -> String{//Retornar se true retorna X e n retorna ' '(vazio)
     }
 }
 
+pub fn have_this(tarefas: &Vec<Todo>,x: &Todo) -> bool{
+    tarefas.iter().any(|t| t.tarefa == x.tarefa)//retorna true se tiver presente no vetor
+}
 //fn save(tarefa: &Vec<Todo>){
 //}

@@ -1,7 +1,7 @@
 mod todo;//mod so aparece em um arquivo o resto pode usar usando crate sem usar mod
 use crate::todo::Todo;
 mod tarefas;
-use crate::tarefas::*;//ou {imprime_tarefas, adiciona_tarefa, marcar_feito,remove_tarefa,remove_all};(list td, q sucks)
+//use crate::tarefas::*;//ou {imprime_tarefas, adiciona_tarefa, marcar_feito,remove_tarefa,remove_all};(list td, q sucks)
 mod utils;
 use crate::utils::*;
 use std::io::Write;//biblioteca pra da flush no buffer
@@ -37,7 +37,7 @@ fn main(){
         io::stdout().flush().unwrap();//limpa buffer
         let mut opc = String::new();
         io::stdin().read_line(&mut opc).expect("Erro ao ler");
-        let (command, args) = filter_command(&opc);
+        let (command,mut args) = filter_command(&opc);
         if command == "exit"{
             break;
         }
