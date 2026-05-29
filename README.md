@@ -7,7 +7,7 @@ Make sure you have [Rust](https://www.rust-lang.org/tools/install) installed, th
  
 ```bash
 cargo install --git https://github.com/Raagranato/WhatDoWeDoNow
-```/seu-u
+```
  
 That's it! The `wdwn` command will be available globally.
  
