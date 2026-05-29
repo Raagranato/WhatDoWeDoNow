@@ -25,7 +25,7 @@ pub fn filter_command(main_input: &String)-> (String,Option<String>){//Option ->
 
 pub fn menu(){
     println!("{}", "=== WhatDoWe-Now ===".bold());
-    println!("  {} [Task]     — adD Task", "add".green());
+    println!("  {} [Task]     — add Task", "add".green());
     println!("  {} [Task]    — conclude Task", "done".green());
     println!("  {} [Task]  — remove Task", "remove".green());
     println!("  {}              — list everything", "list".green());
