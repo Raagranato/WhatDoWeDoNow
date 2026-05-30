@@ -1,5 +1,5 @@
-# WhatDoWeDo-Now?
-WhatDoWeDo-Now is a Rust Todo list that runs entirely on the terminal!
+# WhatIveDone
+WhatIveDone is a Rust Todo list that runs entirely on the terminal!
  
 ## Installation
  
@@ -14,7 +14,7 @@ That's it! The `wdwn` command will be available globally.
 ## Usage
  
 ```bash
-wdwn
+wid
 ```
  
 ### Commands
